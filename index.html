@@ -246,6 +246,10 @@ section.maroon .lede, section.dark .lede { color: rgba(255,255,255,0.85); }
   padding: 22px 22px; border-radius: 10px;
   transition: all 0.2s;
 }
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: '▸'; font-size: 10px; display: inline-block; transition: transform 0.15s; margin-right: 6px; }
+details[open] summary::before { transform: rotate(90deg); }
+details summary:hover { color: var(--maroon) !important; }
 .feature-card:hover { border-color: var(--maroon); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
 .feature-card .icon {
   width: 44px; height: 44px; border-radius: 10px;
@@ -1484,60 +1488,90 @@ section.maroon .lede, section.dark .lede { color: rgba(255,255,255,0.85); }
           <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R1.1</span> Budget vs utilisation</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R1.2</span> Disbursement tracker (with UTR)</li>
+          </ul>
+          <details style="margin-top: 4px;">
+            <summary style="cursor: pointer; font-size: 12.5px; color: var(--orange); font-weight: 600; padding: 4px 0; list-style: none; outline: none;">+ 3 more reports</summary>
+            <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R1.3</span> Unspent balance &amp; interest earned</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R1.4</span> Fund reconciliation</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R1.5</span> Head / sub-head variance</li>
-          </ul>
+            </ul>
+          </details>
         </div>
         <div style="background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--maroon); border-radius: 10px; padding: 22px 24px;">
           <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;"><span style="font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase;">R2</span><h4 style="color: var(--ink); font-size: 17px; margin: 0;">Compliance Reports</h4></div>
           <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R2.1</span> CSR-2 data extract</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R2.2</span> AAP progress tracker</li>
+          </ul>
+          <details style="margin-top: 4px;">
+            <summary style="cursor: pointer; font-size: 12.5px; color: var(--orange); font-weight: 600; padding: 4px 0; list-style: none; outline: none;">+ 3 more reports</summary>
+            <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R2.3</span> Partner document expiry</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R2.4</span> 5% admin cap monitor</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R2.5</span> Asset geo-tagging register</li>
-          </ul>
+            </ul>
+          </details>
         </div>
         <div style="background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--maroon); border-radius: 10px; padding: 22px 24px;">
           <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;"><span style="font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase;">R3</span><h4 style="color: var(--ink); font-size: 17px; margin: 0;">Impact Reports</h4></div>
           <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R3.1</span> KPI achievement — target vs actual</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R3.2</span> Outputs vs Outcomes</li>
+          </ul>
+          <details style="margin-top: 4px;">
+            <summary style="cursor: pointer; font-size: 12.5px; color: var(--orange); font-weight: 600; padding: 4px 0; list-style: none; outline: none;">+ 3 more reports</summary>
+            <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R3.3</span> Lives touched — demographic cut</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R3.4</span> Third-party impact assessment index</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R3.5</span> Stories of Change library</li>
-          </ul>
+            </ul>
+          </details>
         </div>
         <div style="background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--maroon); border-radius: 10px; padding: 22px 24px;">
           <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;"><span style="font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase;">R4</span><h4 style="color: var(--ink); font-size: 17px; margin: 0;">Programme Reports</h4></div>
           <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R4.1</span> Programme-wise spend &amp; reach</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R4.2</span> Geography coverage</li>
+          </ul>
+          <details style="margin-top: 4px;">
+            <summary style="cursor: pointer; font-size: 12.5px; color: var(--orange); font-weight: 600; padding: 4px 0; list-style: none; outline: none;">+ 3 more reports</summary>
+            <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R4.3</span> Partner distribution by programme</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R4.4</span> Schedule VII category mix</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R4.5</span> SDG alignment roll-up</li>
-          </ul>
+            </ul>
+          </details>
         </div>
         <div style="background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--maroon); border-radius: 10px; padding: 22px 24px;">
           <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;"><span style="font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase;">R5</span><h4 style="color: var(--ink); font-size: 17px; margin: 0;">Operational Reports</h4></div>
           <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R5.1</span> Open fund requests (aging)</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R5.2</span> Pending approvals by role</li>
+          </ul>
+          <details style="margin-top: 4px;">
+            <summary style="cursor: pointer; font-size: 12.5px; color: var(--orange); font-weight: 600; padding: 4px 0; list-style: none; outline: none;">+ 3 more reports</summary>
+            <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R5.3</span> Overdue deliverables</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R5.4</span> Field visits — conducted vs planned</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R5.5</span> Work plan activity status</li>
-          </ul>
+            </ul>
+          </details>
         </div>
         <div style="background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--maroon); border-radius: 10px; padding: 22px 24px;">
           <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;"><span style="font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.8px; text-transform: uppercase;">R6</span><h4 style="color: var(--ink); font-size: 17px; margin: 0;">Partner Reports</h4></div>
           <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R6.1</span> Partner performance scorecard</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R6.2</span> DD rating index</li>
+          </ul>
+          <details style="margin-top: 4px;">
+            <summary style="cursor: pointer; font-size: 12.5px; color: var(--orange); font-weight: 600; padding: 4px 0; list-style: none; outline: none;">+ 3 more reports</summary>
+            <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R6.3</span> Partner-wise grants &amp; history</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R6.4</span> Partner utilisation variance</li>
             <li style="padding: 3px 0 3px 26px; position: relative;"><span style="position: absolute; left: 0; color: var(--muted); font-size: 11px;">R6.5</span> Meeting log &amp; review frequency</li>
-          </ul>
+            </ul>
+          </details>
         </div>
       </div>
       <p style="margin-top: 20px; font-size: 13px; color: var(--muted); font-style: italic;">Illustrative catalogue — final report set is tailored per client during implementation.</p>
