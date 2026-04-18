@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mGrant — The Grant Management Platform for Donors & CSR Teams | Dhwani RIS</title>
+<meta name="description" content="mGrant is the end-to-end grant-management platform for Indian donors — CSR teams, foundations, and grant-making organisations. Trusted by 40+ donor organisations managing 1,500+ NGO grantees and ₹5,000+ Cr in grants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --maroon: #8B1A1A;
+  --maroon-dark: #6B1414;
+  --maroon-light: #A83333;
+  --orange: #E67E22;
+  --orange-light: #F39C12;
+  --ink: #1F2937;
+  --ink-soft: #374151;
+  --muted: #6B7280;
+  --muted-soft: #9CA3AF;
+  --tint: #FAF7F5;
+  --tint-2: #F5EFEC;
+  --border: #E5E7EB;
+  --border-soft: #F3F4F6;
+  --white: #FFFFFF;
+  --success: #059669;
+  --warning: #D97706;
+  --danger: #DC2626;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  line-height: 1.6;
+  background: var(--white);
+  font-feature-settings: 'cv02','cv03','cv04','cv11';
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: var(--maroon); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- TOP NAV ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--maroon); font-size: 18px; }
+.brand-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--orange) 0%, var(--maroon) 100%);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14px; letter-spacing: -0.5px;
+}
+.brand small { display: block; font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: 0.3px; text-transform: uppercase; }
+.nav-links { display: flex; gap: 22px; align-items: center; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--ink-soft); }
+.nav-links a:hover { color: var(--maroon); text-decoration: none; }
+.nav-cta {
+  padding: 9px 18px; background: var(--maroon); color: #fff !important;
+  border-radius: 6px; font-weight: 600; font-size: 14px;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--maroon-dark); text-decoration: none; }
+.menu-toggle { display: none; background: none; border: 0; font-size: 22px; color: var(--maroon); cursor: pointer; }
+
+@media (max-width: 960px) {
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: 16px 24px; flex-direction: column; align-items: flex-start; gap: 14px; }
+  .nav-links.open { display: flex; }
+  .menu-toggle { display: block; }
+}
+
+/* ---------- CONTAINER & SECTION ---------- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.wide { max-width: 1280px; }
+section { padding: 88px 0; border-bottom: 1px solid var(--border-soft); }
+section.tinted { background: var(--tint); }
+section.dark { background: var(--ink); color: #E5E7EB; border-bottom: 0; }
+section.dark h2, section.dark h3, section.dark h4 { color: #fff; }
+section.maroon { background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%); color: #fff; border-bottom: 0; }
+section.maroon h2, section.maroon h3, section.maroon h4 { color: #fff; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+  padding: 5px 10px;
+  background: rgba(230, 126, 34, 0.1);
+  border-radius: 4px;
+}
+section.maroon .eyebrow { background: rgba(255,255,255,0.15); color: #fff; }
+section.dark .eyebrow { background: rgba(230, 126, 34, 0.2); color: var(--orange-light); }
+
+h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; color: var(--ink); line-height: 1.2; }
+h1 { font-size: clamp(32px, 5vw, 56px); }
+h2 { font-size: clamp(26px, 3.4vw, 40px); margin-bottom: 20px; }
+h3 { font-size: clamp(20px, 2.2vw, 26px); margin-bottom: 14px; color: var(--maroon); }
+h4 { font-size: 17px; margin-bottom: 8px; }
+.lede { font-size: 19px; color: var(--ink-soft); max-width: 780px; margin-bottom: 48px; }
+section.maroon .lede, section.dark .lede { color: rgba(255,255,255,0.85); }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #6B1414 0%, #8B1A1A 50%, #A83333 100%);
+  color: #fff;
+  padding: 96px 0 112px;
+  overflow: hidden;
+  border-bottom: 0;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 85% 20%, rgba(230, 126, 34, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 15% 80%, rgba(230, 126, 34, 0.15) 0%, transparent 45%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 6px 14px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;
+  color: rgba(255,255,255,0.95); margin-bottom: 24px;
+}
+.hero h1 {
+  color: #fff; font-weight: 800;
+  font-size: clamp(34px, 5.5vw, 60px);
+  margin-bottom: 22px; max-width: 900px;
+}
+.hero h1 em { font-style: normal; color: var(--orange-light); font-weight: 800; }
+.hero-sub {
+  font-size: clamp(16px, 1.6vw, 19px); color: rgba(255,255,255,0.88);
+  max-width: 720px; margin-bottom: 40px; line-height: 1.55;
+}
+.hero-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px; margin: 44px 0 40px;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 20px 18px; border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
+.hero-stat-num { font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+.hero-stat-lbl { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 4px; font-weight: 500; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
+.btn {
+  display: inline-block; padding: 14px 28px; border-radius: 8px;
+  font-weight: 600; font-size: 15px;
+  transition: all 0.15s; cursor: pointer; border: 0;
+}
+.btn-primary {
+  background: var(--orange); color: #fff !important;
+}
+.btn-primary:hover { background: var(--orange-light); text-decoration: none; }
+.btn-ghost {
+  background: transparent; color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.1); text-decoration: none; }
+.btn-dark {
+  background: var(--maroon); color: #fff !important;
+}
+.btn-dark:hover { background: var(--maroon-dark); text-decoration: none; }
+
+/* ---------- PROBLEM GRID ---------- */
+.problem-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px; margin-top: 32px;
+}
+.problem-tile {
+  background: #fff; border: 1px solid var(--border);
+  padding: 22px 20px; border-radius: 10px;
+  transition: all 0.2s;
+}
+.problem-tile:hover { border-color: var(--maroon); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.problem-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: rgba(230, 126, 34, 0.12); color: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 12px;
+}
+.problem-tile h4 { font-size: 15px; margin-bottom: 6px; color: var(--ink); }
+.problem-tile p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+/* ---------- LIFECYCLE ---------- */
+.lifecycle {
+  margin-top: 40px;
+  overflow-x: auto; padding-bottom: 20px;
+}
+.lifecycle-track {
+  display: grid; grid-template-columns: repeat(9, 1fr);
+  gap: 8px; min-width: 880px;
+}
+.phase {
+  background: #fff; border: 1px solid var(--border);
+  padding: 18px 12px 16px; border-radius: 8px;
+  text-align: center; position: relative;
+  transition: all 0.2s;
+}
+.phase:hover { border-color: var(--maroon); transform: translateY(-2px); box-shadow: var(--shadow); }
+.phase-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--maroon); color: #fff;
+  font-weight: 700; font-size: 13px;
+  margin-bottom: 10px;
+}
+.phase h4 { font-size: 13px; margin-bottom: 4px; font-weight: 700; color: var(--ink); line-height: 1.25; }
+.phase p { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.lifecycle-lanes {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px; margin-top: 32px;
+}
+.lane {
+  background: #fff; border: 1px solid var(--border);
+  border-left: 3px solid var(--orange);
+  padding: 16px 18px; border-radius: 6px;
+}
+.lane-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 6px; }
+.lane h5 { font-size: 14px; color: var(--ink); font-weight: 700; }
+.lane p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* ---------- GENERIC FEATURE LAYOUTS ---------- */
+.feature-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; margin-top: 36px;
+}
+.feature-card {
+  background: #fff; border: 1px solid var(--border);
+  padding: 28px 26px; border-radius: 10px;
+  transition: all 0.2s;
+}
+.feature-card:hover { border-color: var(--maroon); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.feature-card .icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: linear-gradient(135deg, rgba(230,126,34,0.15), rgba(139,26,26,0.08));
+  color: var(--maroon);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 16px;
+}
+.feature-card h4 { color: var(--maroon); font-size: 18px; margin-bottom: 10px; }
+.feature-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.feature-card ul { margin-top: 10px; list-style: none; }
+.feature-card ul li {
+  font-size: 13.5px; color: var(--ink-soft); padding: 4px 0 4px 18px;
+  position: relative; line-height: 1.55;
+}
+.feature-card ul li::before {
+  content: ''; position: absolute; left: 0; top: 12px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--orange);
+}
+
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px;
+}
+@media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
+
+.mode-card {
+  background: #fff; border: 1.5px solid var(--border);
+  padding: 28px 26px; border-radius: 12px;
+  position: relative;
+}
+.mode-card.highlight { border-color: var(--maroon); }
+.mode-tag {
+  display: inline-block; padding: 4px 10px; border-radius: 4px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+  background: var(--tint-2); color: var(--maroon);
+  margin-bottom: 14px;
+}
+.mode-card h4 { font-size: 20px; color: var(--ink); margin-bottom: 10px; }
+.mode-card p { color: var(--ink-soft); font-size: 14px; margin-bottom: 12px; }
+.mode-card ul { list-style: none; }
+.mode-card ul li {
+  font-size: 13.5px; color: var(--ink-soft); padding: 5px 0 5px 22px; position: relative;
+}
+.mode-card ul li::before {
+  content: '✓'; position: absolute; left: 0; color: var(--orange); font-weight: 700;
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= TOP NAV ======================= -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">mG</span>
+      <span>mGrant<small>by Dhwani RIS</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#lifecycle">Lifecycle</a>
+      <a href="#partners">Partners</a>
+      <a href="#grants">Grants</a>
+      <a href="#dashboards">Dashboards</a>
+      <a href="#security">Security</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#trusted-by">Clients</a>
+      <a href="#cta" class="nav-cta">Book a Session</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<!-- ======================= §1 HERO ======================= -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Product Feature Note · v1.0 · April 2026</span>
+    <h1>The grant management platform for <em>CSR teams, foundations &amp; grant-making organisations</em> in India.</h1>
+    <p class="hero-sub">Find partners, conduct due diligence, sanction grants, disburse funds, track LFA-based impact, and meet CSR-2, Schedule VII, and MCA obligations — in one enterprise-grade, DPDP-aligned platform built in India.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">40+</div><div class="hero-stat-lbl">Donor instances</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">1,500+</div><div class="hero-stat-lbl">NGO grantees</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">₹5,000+ Cr</div><div class="hero-stat-lbl">Grants governed</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">3,500+</div><div class="hero-stat-lbl">Pre-vetted NGOs</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">9</div><div class="hero-stat-lbl">Lifecycle phases</div></div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#cta" class="btn btn-primary">Book a Session</a>
+      <a href="#lifecycle" class="btn btn-ghost">Explore the Lifecycle →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §2 PROBLEM ======================= -->
+<section class="tinted" id="problem">
+  <div class="container">
+    <span class="eyebrow">The Problem</span>
+    <h2>Grant-making on email and Excel doesn't scale — and it fails on audit.</h2>
+    <p class="lede">Most Indian CSR teams and foundations still run the full grant lifecycle on scattered spreadsheets, long email threads, and shared drives. It works until it doesn't — and the moment it breaks, it's a compliance fire.</p>
+    <div class="problem-grid">
+      <div class="problem-tile"><div class="problem-icon">✉</div><h4>Scattered RFPs</h4><p>Multiple email threads make RFPs and proposals nearly impossible to track and manage.</p></div>
+      <div class="problem-tile"><div class="problem-icon">🔍</div><h4>Due diligence by inbox</h4><p>Chasing DD documents across emails — hard to track, harder to verify.</p></div>
+      <div class="problem-tile"><div class="problem-icon">📋</div><h4>Non-standard reports</h4><p>Standardising annual reports across projects in one format is a recurring challenge.</p></div>
+      <div class="problem-tile"><div class="problem-icon">🗂</div><h4>Scattered project data</h4><p>No single source of truth across donors, partners, grants, and geographies.</p></div>
+      <div class="problem-tile"><div class="problem-icon">📊</div><h4>KPIs everywhere</h4><p>Tracking project-level KPIs in one place is painful when data lives in 20 spreadsheets.</p></div>
+      <div class="problem-tile"><div class="problem-icon">⚖</div><h4>MCA compliance dread</h4><p>Filing CSR-2, AAP, and Schedule VII becomes a quarter-end fire drill.</p></div>
+      <div class="problem-tile"><div class="problem-icon">⏱</div><h4>Email-led delays</h4><p>Approvals over email chains cause slow partner cycles and version confusion.</p></div>
+      <div class="problem-tile"><div class="problem-icon">🎯</div><h4>No impact roll-up</h4><p>Collating last-mile impact across projects, donors, and geographies is a quarter-long exercise.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §3 LIFECYCLE ======================= -->
+<section id="lifecycle">
+  <div class="container wide">
+    <span class="eyebrow">The Full Donor Lifecycle</span>
+    <h2>9 phases. One platform. End-to-end.</h2>
+    <p class="lede">From partner onboarding to project closure, mGrant covers every phase of the donor lifecycle — with no gaps, no handoffs to spreadsheets, and a full audit trail.</p>
+
+    <div class="lifecycle">
+      <div class="lifecycle-track">
+        <div class="phase"><div class="phase-num">1</div><h4>NGO Onboarding &amp; DD</h4><p>Profile &amp; vet partners</p></div>
+        <div class="phase"><div class="phase-num">2</div><h4>Proposal / GAF</h4><p>Submission &amp; review</p></div>
+        <div class="phase"><div class="phase-num">3</div><h4>Grant Sanctioning</h4><p>Approval &amp; scoring</p></div>
+        <div class="phase"><div class="phase-num">4</div><h4>MOU Generation</h4><p>Agreement &amp; signing</p></div>
+        <div class="phase"><div class="phase-num">5</div><h4>Project &amp; Grant Year</h4><p>Setup &amp; kick-off</p></div>
+        <div class="phase"><div class="phase-num">6</div><h4>Fund Request &amp; Disbursement</h4><p>Multi-level approval</p></div>
+        <div class="phase"><div class="phase-num">7</div><h4>Budget &amp; LFA Reporting</h4><p>Utilisation &amp; KPIs</p></div>
+        <div class="phase"><div class="phase-num">8</div><h4>Project Reports</h4><p>QPR, QFR, field visits</p></div>
+        <div class="phase"><div class="phase-num">9</div><h4>Renewal / Closure</h4><p>Extend or close</p></div>
+      </div>
+    </div>
+
+    <div class="lifecycle-lanes">
+      <div class="lane"><div class="lane-lbl">Lane A</div><h5>Partner Onboarding</h5><p>NGO profile creation, document vault, 3-layer due diligence.</p></div>
+      <div class="lane"><div class="lane-lbl">Lane B</div><h5>Proposal → Grant</h5><p>GAF creation, review, approval, MOU, Project &amp; Grant Year setup.</p></div>
+      <div class="lane"><div class="lane-lbl">Lane C</div><h5>Fund Flow</h5><p>Tranche planning, fund requests, multi-level approval, disbursement with UTR.</p></div>
+      <div class="lane"><div class="lane-lbl">Lane D</div><h5>Reporting &amp; Closure</h5><p>Budget utilisation, LFA/KPI, project reports, renewal or closure.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §4 PROPOSAL CRM ======================= -->
+<section class="tinted" id="proposals">
+  <div class="container">
+    <span class="eyebrow">§4 · Proposal &amp; Application CRM</span>
+    <h2>Run every RFP through one platform — from release to MOU signing.</h2>
+    <p class="lede">Release calls for proposals in two modes, configure templates per programme, assess with in-line commenting and scoring, and run multi-level approvals — all in one pipeline.</p>
+
+    <div class="two-col">
+      <div class="mode-card highlight">
+        <span class="mode-tag">Mode 1</span>
+        <h4>Open Call</h4>
+        <p>Get a public URL. Anyone can apply. Best for broad discovery, new partner sourcing, and open philanthropic mandates.</p>
+        <ul>
+          <li>Public application portal</li>
+          <li>Self-registration for NGOs</li>
+          <li>Configurable application form per call</li>
+          <li>Wide reach across thematic and geographic areas</li>
+        </ul>
+      </div>
+      <div class="mode-card">
+        <span class="mode-tag">Mode 2</span>
+        <h4>Invite-Only</h4>
+        <p>Share the RFP with a curated list of NGOs via email invitation. Best for repeat partnerships, targeted shortlists, and relationship-led programmes.</p>
+        <ul>
+          <li>Email-based invitation to shortlisted partners</li>
+          <li>Secure, tracked access per partner</li>
+          <li>Pair with a shortlist built in the NGO Directory</li>
+          <li>Private, controlled pipeline</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="feature-grid" style="margin-top: 48px;">
+      <div class="feature-card">
+        <div class="icon">📝</div>
+        <h4>Configurable Templates</h4>
+        <p>Define custom questions, budget formats, and selection criteria per programme or donor.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💬</div>
+        <h4>Assessment &amp; Review</h4>
+        <ul><li>In-line commenting</li><li>Clarification requests</li><li>Scoring rubrics</li><li>Multi-level approvals</li></ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h4>GAF Stages</h4>
+        <p>Proposal Details → Timeframe → Geography → Budget Allocation → LFA → Payment Tranches → Reporting Plan → Submit → Under Review → Approved/Rejected/Sent Back.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📈</div>
+        <h4>Funnel Tracking</h4>
+        <p>Submitted, in progress, converted, lost — with conversion rates per programme and donor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §5a PARTNER DISCOVERY (FLAGSHIP) ======================= -->
+<section id="partners">
+  <div class="container">
+    <span class="eyebrow" style="background: rgba(139, 26, 26, 0.1); color: var(--maroon);">Flagship · §5a · Partner Discovery</span>
+    <h2>3,500+ pre-vetted NGOs — filter, shortlist, and invite in one click.</h2>
+    <p class="lede">Most grant tools assume you already know your partners. <strong style="color: var(--maroon);">mGrant helps you find them.</strong> Every NGO in the directory has a valid Income Tax registration, NGO Darpan ID, and FCRA clearance — a curated base, not scraped data.</p>
+
+    <div style="display: grid; grid-template-columns: 320px 1fr; gap: 24px; margin-top: 40px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; box-shadow: var(--shadow);">
+      <!-- Mock filter panel -->
+      <div style="border-right: 1px solid var(--border); padding-right: 20px;">
+        <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin-bottom: 14px;">Filters</div>
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Thematic area</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: 12px; padding: 4px 10px; background: var(--maroon); color: #fff; border-radius: 4px;">Early literacy</span>
+            <span style="font-size: 12px; padding: 4px 10px; background: #F3F4F6; color: var(--ink-soft); border-radius: 4px;">WASH</span>
+            <span style="font-size: 12px; padding: 4px 10px; background: #F3F4F6; color: var(--ink-soft); border-radius: 4px;">Livelihoods</span>
+            <span style="font-size: 12px; padding: 4px 10px; background: #F3F4F6; color: var(--ink-soft); border-radius: 4px;">Maternal health</span>
+          </div>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">State</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: 12px; padding: 4px 10px; background: var(--maroon); color: #fff; border-radius: 4px;">Uttar Pradesh</span>
+            <span style="font-size: 12px; padding: 4px 10px; background: #F3F4F6; color: var(--ink-soft); border-radius: 4px;">+ Add</span>
+          </div>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">Compliance</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: 12px; padding: 4px 10px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px;">✓ 12A</span>
+            <span style="font-size: 12px; padding: 4px 10px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px;">✓ 80G</span>
+            <span style="font-size: 12px; padding: 4px 10px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px;">✓ FCRA</span>
+          </div>
+        </div>
+        <div style="font-size: 12px; color: var(--muted); padding-top: 12px; border-top: 1px dashed var(--border);">
+          <strong style="color: var(--maroon); font-size: 14px;">87 NGOs match</strong><br>
+          <span style="margin-top: 4px; display: block;">Save this as a shortlist →</span>
+        </div>
+      </div>
+      <!-- Mock results -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <div style="font-size: 13px; color: var(--muted);">Shortlist: <strong style="color: var(--ink);">Early Literacy · Uttar Pradesh</strong></div>
+          <button style="padding: 8px 16px; background: var(--orange); color: #fff; border: 0; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: default;">Express Interest → 87 NGOs</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 14px; padding: 12px; background: var(--tint); border-radius: 8px;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">PF</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: var(--ink); font-size: 14px;">Pratham Foundation</div>
+              <div style="font-size: 12px; color: var(--muted);">Lucknow, UP · 12A · 80G · FCRA · Active</div>
+            </div>
+            <span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Verified</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; padding: 12px; background: var(--tint); border-radius: 8px;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">RN</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: var(--ink); font-size: 14px;">Room to Read India (Sample)</div>
+              <div style="font-size: 12px; color: var(--muted);">Varanasi, UP · 12A · 80G · FCRA · Active</div>
+            </div>
+            <span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Verified</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; padding: 12px; background: var(--tint); border-radius: 8px;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;">EW</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 600; color: var(--ink); font-size: 14px;">Ek Kadam Welfare Trust (Sample)</div>
+              <div style="font-size: 12px; color: var(--muted);">Agra, UP · 12A · 80G · FCRA · Active</div>
+            </div>
+            <span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Verified</span>
+          </div>
+          <div style="text-align: center; padding: 10px; font-size: 12px; color: var(--muted);">+ 84 more NGOs matching these filters (illustrative)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-grid" style="margin-top: 44px;">
+      <div class="feature-card"><div class="icon">🎯</div><h4>Filter &amp; Shortlist</h4><p>By thematic area, geography (state / district / block), Schedule VII category, NGO size, past grant history.</p></div>
+      <div class="feature-card"><div class="icon">💾</div><h4>Save Custom Lists</h4><p>Build and save shortlists — e.g., "Early Literacy partners in UP" or "Schedule VII Goal 3 partners in Maharashtra."</p></div>
+      <div class="feature-card"><div class="icon">✉</div><h4>Express Interest</h4><p>Send invitations to shortlisted NGOs directly from the portal. Each NGO receives an email notification and can register through the platform.</p></div>
+      <div class="feature-card"><div class="icon">🔄</div><h4>Funnel to Invite-Only RFP</h4><p>Your shortlist becomes the invitation list for a Closed / Invite-Only proposal call — partner discovery and RFP sourcing in one flow.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §5b COMPLIANCE DOCUMENT VAULT ======================= -->
+<section class="tinted" id="profile">
+  <div class="container">
+    <span class="eyebrow">§5b · NGO Profile &amp; Compliance Vault</span>
+    <h2>Every partner's paperwork, with expiry tracking.</h2>
+    <p class="lede">Every NGO has a structured profile with a dedicated Documents section. Upload, version, and track the statutory paperwork — and get reminded before anything lapses.</p>
+
+    <div class="two-col" style="gap: 40px;">
+      <div>
+        <h3>Structured NGO Profile</h3>
+        <ul style="list-style: none; margin-top: 16px;">
+          <li style="padding: 8px 0 8px 22px; position: relative; color: var(--ink-soft);"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Organisation details, leadership, and SPOCs</li>
+          <li style="padding: 8px 0 8px 22px; position: relative; color: var(--ink-soft);"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Bank details, financial metadata</li>
+          <li style="padding: 8px 0 8px 22px; position: relative; color: var(--ink-soft);"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Thematic focus, geographies worked in</li>
+          <li style="padding: 8px 0 8px 22px; position: relative; color: var(--ink-soft);"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> SDG alignment &amp; Schedule VII tagging</li>
+          <li style="padding: 8px 0 8px 22px; position: relative; color: var(--ink-soft);"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Document-level RBAC — finance team sees financial docs, programme team sees programmatic docs</li>
+          <li style="padding: 8px 0 8px 22px; position: relative; color: var(--ink-soft);"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Full version history &amp; audit trail on every document</li>
+        </ul>
+      </div>
+      <div>
+        <div style="background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; box-shadow: var(--shadow);">
+          <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin-bottom: 14px;">Compliance Document Vault</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border);"><div><strong style="font-size: 14px;">PAN</strong> <span style="color: var(--muted); font-size: 12px;"> · Uploaded Jan 2024</span></div><span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Valid</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border);"><div><strong style="font-size: 14px;">12A Registration</strong> <span style="color: var(--muted); font-size: 12px;"> · Valid till Mar 2027</span></div><span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Valid</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border);"><div><strong style="font-size: 14px;">80G Registration</strong> <span style="color: var(--muted); font-size: 12px;"> · Expires Aug 2026</span></div><span style="font-size: 11px; padding: 3px 8px; background: rgba(217,119,6,0.1); color: var(--warning); border-radius: 4px; font-weight: 600;">Renew soon</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border);"><div><strong style="font-size: 14px;">FCRA</strong> <span style="color: var(--muted); font-size: 12px;"> · Valid till 2029</span></div><span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Valid</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border);"><div><strong style="font-size: 14px;">CSR-1</strong> <span style="color: var(--muted); font-size: 12px;"> · Active</span></div><span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Valid</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--border);"><div><strong style="font-size: 14px;">Audit Report FY24</strong> <span style="color: var(--muted); font-size: 12px;"> · Uploaded</span></div><span style="font-size: 11px; padding: 3px 8px; background: rgba(5,150,105,0.1); color: var(--success); border-radius: 4px; font-weight: 600;">Current</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;"><div><strong style="font-size: 14px;">GST Certificate</strong> <span style="color: var(--muted); font-size: 12px;"> · Expires Jun 2026</span></div><span style="font-size: 11px; padding: 3px 8px; background: rgba(220,38,38,0.1); color: var(--danger); border-radius: 4px; font-weight: 600;">Expires soon</span></div>
+          </div>
+          <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted);">
+            Automated reminders sent to donor + NGO 60, 30, and 7 days before expiry.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §5c DUE DILIGENCE ======================= -->
+<section id="due-diligence">
+  <div class="container">
+    <span class="eyebrow" style="background: rgba(139, 26, 26, 0.1); color: var(--maroon);">Flagship · §5c · Due Diligence</span>
+    <h2>Three layers. Flexibly digitised.</h2>
+    <p class="lede">Due diligence isn't just document review. mGrant supports all three layers — and each donor can choose how much of the process happens in-system vs externally.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px;">
+      <div style="background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--maroon); padding: 26px 24px; border-radius: 8px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Layer 1</div>
+        <h3 style="color: var(--ink); font-size: 20px; margin-bottom: 12px;">Desk-based DD</h3>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.6;">Documentary review against a configurable checklist. Scoring and compliance verification — fully in-system, end-to-end.</p>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Configurable DD checklist per donor policy</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Risk rating feeding approval chains</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Compliance document verification</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Multi-level sign-off</li>
+        </ul>
+      </div>
+      <div style="background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--maroon); padding: 26px 24px; border-radius: 8px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Layer 2</div>
+        <h3 style="color: var(--ink); font-size: 20px; margin-bottom: 12px;">Field-based DD</h3>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.6;">Site visit. Observe operations, meet leadership, interview staff and beneficiaries, review books of record, meet local stakeholders.</p>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Digitised via mForm field forms</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Or external report upload</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Photo, video, geo-tag capture</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Structured observation templates</li>
+        </ul>
+      </div>
+      <div style="background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--maroon); padding: 26px 24px; border-radius: 8px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Layer 3</div>
+        <h3 style="color: var(--ink); font-size: 20px; margin-bottom: 12px;">Reference Check</h3>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.6;">Third-party and peer references from previous donors, government stakeholders, auditors, and implementation partners.</p>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Digitised reference forms</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Or external report upload</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Reference tracker</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">•</span> Feeds into final DD rating</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; padding: 20px 24px; background: var(--tint); border-left: 4px solid var(--orange); border-radius: 8px;">
+      <strong style="color: var(--maroon);">Flexible deployment.</strong> Each donor chooses their model: digitise all three layers in-system, or digitise only desk-based DD and upload external reports for field and reference. The system adapts to your DD policy, not the other way around.
+    </div>
+
+    <div style="margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap;">
+      <span style="padding: 6px 14px; border-radius: 20px; background: #fff; border: 1px solid var(--border); font-size: 13px; color: var(--ink-soft);"><strong style="color: var(--success);">●</strong> Conducted with rating</span>
+      <span style="padding: 6px 14px; border-radius: 20px; background: #fff; border: 1px solid var(--border); font-size: 13px; color: var(--ink-soft);"><strong style="color: var(--warning);">●</strong> Waived Off</span>
+      <span style="padding: 6px 14px; border-radius: 20px; background: #fff; border: 1px solid var(--border); font-size: 13px; color: var(--ink-soft);"><strong style="color: var(--muted);">●</strong> Not Conducted</span>
+      <span style="padding: 6px 14px; font-size: 13px; color: var(--muted); font-style: italic;">DD status visible on every NGO profile and GAF.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §6 GRANTS MANAGEMENT ======================= -->
+<section class="tinted" id="grants">
+  <div class="container">
+    <span class="eyebrow">§6 · Grants Management</span>
+    <h2>Every grant, end to end — from MoU to closure.</h2>
+    <p class="lede">Once a proposal converts to a signed MoU, a grant is created and tracked against budget, timeline, milestones, and KPI-based performance.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📁</div>
+        <h4>Grant Profiling</h4>
+        <ul>
+          <li>FC vs Non-FC classification</li>
+          <li>Schedule VII category &amp; SDG alignment</li>
+          <li>Geography hierarchy (State → District → Block → Village)</li>
+          <li>Thematic / focus area tagging</li>
+          <li>Self-implementation vs sub-project mode</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎯</div>
+        <h4>Programme &amp; Budget Tagging</h4>
+        <ul>
+          <li>Every grant linked to a programme</li>
+          <li>Thematic pillar mapping</li>
+          <li>Multiple budget head allocation</li>
+          <li>Cross-programme roll-up at portfolio level</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔔</div>
+        <h4>Milestone &amp; Report Reminders</h4>
+        <ul>
+          <li>Automated alerts for tranche dates</li>
+          <li>Reporting deadline escalations</li>
+          <li>Email + in-app notifications</li>
+          <li>Calendar sync available</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💎</div>
+        <h4>Performance-Based Disbursement</h4>
+        <ul>
+          <li>Release funds only when KPIs are met</li>
+          <li>Configurable per tranche</li>
+          <li>Automated KPI achievement verification</li>
+          <li>Override with approval trail</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h4>Multi-Year MoU Lifecycle</h4>
+        <ul>
+          <li>Grant Year 1 → Renewal → Year 2 → Year 3</li>
+          <li>Automated renewal workflow</li>
+          <li>Annual re-profiling (fresh GAF + sanction)</li>
+          <li>Process complete at final year</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📤</div>
+        <h4>Extension &amp; Closure</h4>
+        <ul>
+          <li>No-cost extension with document upload</li>
+          <li>Cost extension with revised budget</li>
+          <li>Project closure with final reports</li>
+          <li>Automated notifications to all roles</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Grant year timeline visual -->
+    <div style="margin-top: 48px; padding: 28px; background: #fff; border: 1px solid var(--border); border-radius: 12px;">
+      <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 20px;">Illustrative 3-Year Grant Timeline</div>
+      <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 12px; align-items: center;">
+        <div style="padding: 14px; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; border-radius: 8px; text-align: center;">
+          <div style="font-weight: 700; font-size: 14px;">Grant Year 1</div>
+          <div style="font-size: 11px; opacity: 0.9; margin-top: 4px;">Apr 2024 – Mar 2025</div>
+        </div>
+        <div style="color: var(--muted); font-size: 18px;">→</div>
+        <div style="padding: 14px; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; border-radius: 8px; text-align: center;">
+          <div style="font-weight: 700; font-size: 14px;">Grant Year 2</div>
+          <div style="font-size: 11px; opacity: 0.9; margin-top: 4px;">Apr 2025 – Mar 2026</div>
+        </div>
+        <div style="color: var(--muted); font-size: 18px;">→</div>
+        <div style="padding: 14px; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; border-radius: 8px; text-align: center;">
+          <div style="font-weight: 700; font-size: 14px;">Grant Year 3</div>
+          <div style="font-size: 11px; opacity: 0.9; margin-top: 4px;">Apr 2026 – Mar 2027</div>
+        </div>
+        <div style="color: var(--muted); font-size: 18px;">→</div>
+        <div style="padding: 14px; background: var(--tint-2); color: var(--maroon); border-radius: 8px; text-align: center; border: 1px dashed var(--maroon);">
+          <div style="font-weight: 700; font-size: 14px;">Closure / Extension</div>
+          <div style="font-size: 11px; opacity: 0.8; margin-top: 4px;">or Renewal</div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-top: 10px; font-size: 11px; color: var(--muted); text-align: center;">
+        <div>Each year: fresh GAF, sanction letter, new budget, new targets</div>
+        <div></div>
+        <div></div>
+        <div>No-cost ext. · Cost ext. · Final closure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §7 BUDGET & FUND FLOW ======================= -->
+<section id="fund-flow">
+  <div class="container">
+    <span class="eyebrow">§7 · Budget &amp; Fund Flow</span>
+    <h2>Every rupee tracked — from sanction to UTR to utilisation.</h2>
+    <p class="lede">Multi-year budget allocation, dual budget heads, tranche planning, fund requests with multi-level approvals, disbursement with UTR capture, and utilisation reconciliation — all audit-trailed.</p>
+
+    <!-- Fund flow diagram -->
+    <div style="margin-top: 36px; padding: 32px 28px; background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow);">
+      <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 22px; text-align: center;">The mGrant Fund Flow</div>
+      <div style="display: grid; grid-template-columns: repeat(7, auto); gap: 8px; align-items: center; justify-content: center; overflow-x: auto;">
+        <div style="padding: 12px 16px; background: var(--tint-2); border-radius: 8px; text-align: center; min-width: 110px;">
+          <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 1</div>
+          <div style="font-weight: 700; font-size: 14px; color: var(--maroon); margin-top: 4px;">Sanction</div>
+        </div>
+        <div style="color: var(--orange); font-size: 18px; font-weight: 700;">→</div>
+        <div style="padding: 12px 16px; background: var(--tint-2); border-radius: 8px; text-align: center; min-width: 110px;">
+          <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 2</div>
+          <div style="font-weight: 700; font-size: 14px; color: var(--maroon); margin-top: 4px;">Tranche Plan</div>
+        </div>
+        <div style="color: var(--orange); font-size: 18px; font-weight: 700;">→</div>
+        <div style="padding: 12px 16px; background: var(--tint-2); border-radius: 8px; text-align: center; min-width: 110px;">
+          <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 3</div>
+          <div style="font-weight: 700; font-size: 14px; color: var(--maroon); margin-top: 4px;">Fund Request</div>
+        </div>
+        <div style="color: var(--orange); font-size: 18px; font-weight: 700;">→</div>
+        <div style="padding: 12px 16px; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; border-radius: 8px; text-align: center; min-width: 130px;">
+          <div style="font-size: 11px; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px;">Step 4</div>
+          <div style="font-weight: 700; font-size: 14px; margin-top: 4px;">Multi-Level Approval</div>
+        </div>
+      </div>
+      <div style="text-align: center; margin: 12px 0;">
+        <div style="display: inline-block; padding: 6px 12px; background: rgba(139,26,26,0.08); border-radius: 16px; font-size: 11px; color: var(--maroon); font-weight: 600;">Grant Manager → CSR Head → Finance Team</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, auto); gap: 8px; align-items: center; justify-content: center; overflow-x: auto;">
+        <div style="padding: 12px 16px; background: var(--tint-2); border-radius: 8px; text-align: center; min-width: 110px;">
+          <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 5</div>
+          <div style="font-weight: 700; font-size: 14px; color: var(--maroon); margin-top: 4px;">Disbursement + UTR</div>
+        </div>
+        <div style="color: var(--orange); font-size: 18px; font-weight: 700;">→</div>
+        <div style="padding: 12px 16px; background: var(--tint-2); border-radius: 8px; text-align: center; min-width: 110px;">
+          <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 6</div>
+          <div style="font-weight: 700; font-size: 14px; color: var(--maroon); margin-top: 4px;">Utilisation</div>
+        </div>
+        <div style="color: var(--orange); font-size: 18px; font-weight: 700;">→</div>
+        <div style="padding: 12px 16px; background: var(--tint-2); border-radius: 8px; text-align: center; min-width: 110px;">
+          <div style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Step 7</div>
+          <div style="font-weight: 700; font-size: 14px; color: var(--maroon); margin-top: 4px;">Reconciliation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-grid" style="margin-top: 40px;">
+      <div class="feature-card">
+        <div class="icon">📅</div>
+        <h4>Multi-Year Budget Allocation</h4>
+        <p>Bulk-upload budgets across quarters and years per grant. Allocate by programme, year, budget head, and sub-head.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚖</div>
+        <h4>Dual Budget Heads</h4>
+        <p>Donor budget heads <em>+</em> internal natural heads, with mapping between them. Same grant, multiple donor conventions supported.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📋</div>
+        <h4>Granular Sub-Budget Heads</h4>
+        <p>Personnel → Project Coordinator Salary; Travel → Field Visit Conveyance; Programme → Training Materials. Precision down to each line item.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💳</div>
+        <h4>Tranche &amp; Receipt Flexibility</h4>
+        <p>Partial payments, combined tranches, 1:many mapping between planned tranches and actual receipts — all supported.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧾</div>
+        <h4>Disbursement with UTR</h4>
+        <p>Finance records every payment with UTR number, date, amount. NGO partner auto-notified by email. Bank reconciliation ready.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h4>Summary Cards</h4>
+        <p>Sanctioned · Planned · Received · Utilised · Unutilised — visible at grant, programme, and portfolio level.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §8 KPI / LFA / IMPACT + STORIES OF CHANGE ======================= -->
+<section class="tinted" id="impact">
+  <div class="container">
+    <span class="eyebrow">§8 · KPI, LFA &amp; Impact Reporting</span>
+    <h2>From activities to impact — quantitative and qualitative.</h2>
+    <p class="lede">Plan and measure impact using the Logical Framework Approach, with two configurable reporting paths. Complement the numbers with Stories of Change — narrative, photo, and video submissions from the ground.</p>
+
+    <!-- LFA chain -->
+    <div style="margin-top: 36px;">
+      <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 12px; align-items: center;">
+        <div style="padding: 18px; background: #fff; border: 1.5px solid var(--border); border-radius: 10px; text-align: center;">
+          <div style="font-size: 24px; margin-bottom: 6px;">⚙</div>
+          <h4 style="color: var(--maroon); font-size: 16px;">Activities</h4>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">Specific actions executed on the ground</p>
+        </div>
+        <div style="color: var(--orange); font-size: 20px; font-weight: 700;">→</div>
+        <div style="padding: 18px; background: #fff; border: 1.5px solid var(--border); border-radius: 10px; text-align: center;">
+          <div style="font-size: 24px; margin-bottom: 6px;">📦</div>
+          <h4 style="color: var(--maroon); font-size: 16px;">Outputs</h4>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">Direct deliverables from activities</p>
+        </div>
+        <div style="color: var(--orange); font-size: 20px; font-weight: 700;">→</div>
+        <div style="padding: 18px; background: #fff; border: 1.5px solid var(--border); border-radius: 10px; text-align: center;">
+          <div style="font-size: 24px; margin-bottom: 6px;">📈</div>
+          <h4 style="color: var(--maroon); font-size: 16px;">Outcomes</h4>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 4px;">Changes resulting from outputs</p>
+        </div>
+        <div style="color: var(--orange); font-size: 20px; font-weight: 700;">→</div>
+        <div style="padding: 18px; background: linear-gradient(135deg, var(--orange), var(--maroon)); color: #fff; border-radius: 10px; text-align: center;">
+          <div style="font-size: 24px; margin-bottom: 6px;">🌍</div>
+          <h4 style="color: #fff; font-size: 16px;">Impact</h4>
+          <p style="font-size: 12px; opacity: 0.9; margin-top: 4px;">Long-term societal change</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two paths -->
+    <h3 style="margin-top: 56px;">Two reporting paths — configurable per KPI</h3>
+    <div class="two-col">
+      <div class="mode-card">
+        <span class="mode-tag">Path A</span>
+        <h4>Aggregate Entry</h4>
+        <p>Manual monthly / quarterly / annual entry of achievement numbers against each KPI. Best for smaller grants or where field MIS isn't available.</p>
+        <ul>
+          <li>Simple spreadsheet-like entry</li>
+          <li>Approval chain on every KPI report</li>
+          <li>Configurable reporting frequency</li>
+        </ul>
+      </div>
+      <div class="mode-card highlight">
+        <span class="mode-tag">Path B</span>
+        <h4>Field MIS Integration</h4>
+        <p>KPI auto-calculated from mForm or any Programme MIS. Best for grants with active field data collection and beneficiary tracking.</p>
+        <ul>
+          <li>Native integration with mForm</li>
+          <li>Architecture-ready for SurveyCTO, ODK, KoboToolbox, CommCare</li>
+          <li>Beneficiary-level data rolls up to aggregate KPI</li>
+          <li>Mix both paths within a single grant</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px; font-size: 14px; color: var(--muted); font-style: italic;">A donor can configure, for example, 10 KPIs across a grant — 7 on Path A (aggregate) and 3 on Path B (MIS-driven). The system adapts to what's feasible per indicator.</p>
+
+    <!-- Stories of Change -->
+    <div style="margin-top: 64px; padding: 40px 36px; background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow);">
+      <span class="eyebrow" style="background: rgba(230, 126, 34, 0.1); color: var(--orange);">Flagship · Qualitative Impact</span>
+      <h3 style="font-size: 28px; margin-top: 6px;">Stories of Change</h3>
+      <p style="font-size: 17px; color: var(--ink-soft); max-width: 760px; margin: 12px 0 28px;">
+        Numbers on a dashboard tell half the story. NGO partners submit narrative stories from the ground — with photos, videos, and supporting media — to bring impact to life.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+        <div style="border-left: 3px solid var(--orange); padding-left: 18px;">
+          <h4 style="color: var(--ink); font-size: 16px; margin-bottom: 6px;">For the CSR / comms team</h4>
+          <p style="font-size: 14px; color: var(--muted);">Repurpose stories for branding, social media, annual reports, board decks, and external reports.</p>
+        </div>
+        <div style="border-left: 3px solid var(--orange); padding-left: 18px;">
+          <h4 style="color: var(--ink); font-size: 16px; margin-bottom: 6px;">For the NGO partner</h4>
+          <p style="font-size: 14px; color: var(--muted);">A structured way to capture success stories, field photos, beneficiary journeys, and video testimonials.</p>
+        </div>
+        <div style="border-left: 3px solid var(--orange); padding-left: 18px;">
+          <h4 style="color: var(--ink); font-size: 16px; margin-bottom: 6px;">For the partner network</h4>
+          <p style="font-size: 14px; color: var(--muted);">Stories visible to the donor's other NGO partners — acting as a peer knowledge base of what's working in the field.</p>
+        </div>
+      </div>
+      <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <span style="padding: 5px 12px; background: var(--tint-2); color: var(--maroon); border-radius: 16px; font-size: 12px; font-weight: 600;">Photos</span>
+        <span style="padding: 5px 12px; background: var(--tint-2); color: var(--maroon); border-radius: 16px; font-size: 12px; font-weight: 600;">Videos</span>
+        <span style="padding: 5px 12px; background: var(--tint-2); color: var(--maroon); border-radius: 16px; font-size: 12px; font-weight: 600;">Narrative text</span>
+        <span style="padding: 5px 12px; background: var(--tint-2); color: var(--maroon); border-radius: 16px; font-size: 12px; font-weight: 600;">Geo-tagged</span>
+        <span style="padding: 5px 12px; background: var(--tint-2); color: var(--maroon); border-radius: 16px; font-size: 12px; font-weight: 600;">Thematic tags</span>
+        <span style="padding: 5px 12px; background: var(--tint-2); color: var(--maroon); border-radius: 16px; font-size: 12px; font-weight: 600;">Cross-partner visibility</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §9 PROJECT MANAGEMENT & REPORTS ======================= -->
+<section id="reports">
+  <div class="container">
+    <span class="eyebrow">§9 · Project Management &amp; Reporting</span>
+    <h2>Operational delivery — the execution workspace.</h2>
+    <p class="lede">Work plans, field visits, quarterly reports, and task management — everything a grant manager needs for day-to-day execution, with automated reminders and escalation.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📅</div>
+        <h4>Auto Work Plan Engine</h4>
+        <p>When donor commitments are defined, the system auto-generates line items with months, dates, and responsible roles.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📑</div>
+        <h4>QPR · QFR · QRR</h4>
+        <ul>
+          <li><strong>QPR</strong> — Quarterly Progress Report (narrative + targets vs actuals)</li>
+          <li><strong>QFR</strong> — Quarterly Fund Utilisation Report</li>
+          <li><strong>QRR</strong> — Auto-generated Quarterly Review combining QPR + QFR</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📸</div>
+        <h4>Field Visit Reports</h4>
+        <p>Submit within 10 days of site visit. Photo, video, geo-tag capture via mForm. Structured observation templates.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⏰</div>
+        <h4>Deliverables Tracker</h4>
+        <p>Across all grants: submitted, pending, overdue — sliceable by partner, programme, and reporting period.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔔</div>
+        <h4>Reminders &amp; Escalations</h4>
+        <p>Automated email + in-app notifications. Configurable escalation paths when reports are missed. Role-specific routing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">✅</div>
+        <h4>Task Management</h4>
+        <p>Slack-style task management — cross-project and ad-hoc. Assign to individuals or groups, attach evidence of completion, track overdue / delayed / on-time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §10 DASHBOARDS ======================= -->
+<section class="tinted" id="dashboards">
+  <div class="container">
+    <span class="eyebrow">§10 · Dashboards &amp; Analytics</span>
+    <h2>Portfolio visibility — the Monday-morning view.</h2>
+    <p class="lede">Real-time dashboards with multi-dimensional slicing — donor, programme, pillar, geography, financial year — all drill-down enabled, from portfolio to village level.</p>
+
+    <!-- Mock Dashboard -->
+    <div style="margin-top: 36px; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-lg);">
+      <div style="display: flex; border-bottom: 1px solid var(--border); background: #FAFAFA;">
+        <div style="padding: 14px 22px; border-bottom: 3px solid var(--maroon); font-weight: 700; color: var(--maroon); font-size: 14px;">₹ Finance</div>
+        <div style="padding: 14px 22px; color: var(--muted); font-size: 14px;">📋 Programme</div>
+        <div style="padding: 14px 22px; color: var(--muted); font-size: 14px;">📊 Pillar</div>
+        <div style="padding: 14px 22px; color: var(--muted); font-size: 14px;">📁 Legacy</div>
+      </div>
+      <div style="padding: 18px 22px; background: #FDFCFA; border-bottom: 1px solid var(--border); display: flex; gap: 10px; flex-wrap: wrap;">
+        <span style="padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--ink-soft);"><span style="color: var(--muted);">Business Unit:</span> <strong>Godrej Agrovet</strong> ▾</span>
+        <span style="padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--ink-soft);"><span style="color: var(--muted);">Financial Year:</span> <strong>FY 2025-26</strong> ▾</span>
+        <span style="padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--ink-soft);"><span style="color: var(--muted);">Programme:</span> All ▾</span>
+        <span style="padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--ink-soft);"><span style="color: var(--muted);">State:</span> All ▾</span>
+        <span style="padding: 7px 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; color: var(--ink-soft);"><span style="color: var(--muted);">District:</span> All ▾</span>
+        <span style="padding: 7px 14px; background: var(--maroon); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 600;">Apply</span>
+      </div>
+
+      <!-- KPI tiles -->
+      <div style="padding: 24px 22px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 24px;">
+          <div style="padding: 18px; background: linear-gradient(135deg, #EFF6FF, #DBEAFE); border-radius: 10px;">
+            <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Total Budget (₹)</div>
+            <div style="font-size: 26px; font-weight: 800; color: #1E40AF; margin-top: 4px;">59.11 Cr</div>
+          </div>
+          <div style="padding: 18px; background: linear-gradient(135deg, #FDF2F8, #FCE7F3); border-radius: 10px;">
+            <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Amount Committed</div>
+            <div style="font-size: 26px; font-weight: 800; color: #BE185D; margin-top: 4px;">56.2 L</div>
+          </div>
+          <div style="padding: 18px; background: linear-gradient(135deg, #FFFBEB, #FEF3C7); border-radius: 10px;">
+            <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Amount Disbursed</div>
+            <div style="font-size: 26px; font-weight: 800; color: #A16207; margin-top: 4px;">43.82 L</div>
+          </div>
+          <div style="padding: 18px; background: linear-gradient(135deg, #F0FDF4, #D1FAE5); border-radius: 10px;">
+            <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Amount Utilised</div>
+            <div style="font-size: 26px; font-weight: 800; color: var(--success); margin-top: 4px;">1.15 L</div>
+          </div>
+          <div style="padding: 18px; background: linear-gradient(135deg, #FEF2F2, #FEE2E2); border-radius: 10px;">
+            <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Amount Unutilised</div>
+            <div style="font-size: 26px; font-weight: 800; color: #B91C1C; margin-top: 4px;">32.8 L</div>
+          </div>
+          <div style="padding: 18px; background: linear-gradient(135deg, #EFF6FF, #DBEAFE); border-radius: 10px;">
+            <div style="font-size: 12px; color: var(--muted); font-weight: 500;">Amount Unspent (3 FYs)</div>
+            <div style="font-size: 26px; font-weight: 800; color: #1E40AF; margin-top: 4px;">21 Cr</div>
+          </div>
+        </div>
+
+        <!-- Second row: map + table mock -->
+        <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 18px;">
+          <div style="padding: 20px; background: #FAFAFA; border: 1px solid var(--border); border-radius: 10px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 14px;">Geographic Reach</div>
+            <!-- Simple India shape placeholder -->
+            <svg viewBox="0 0 200 220" style="width: 100%; height: auto; max-height: 220px;">
+              <path d="M 100 20 L 130 30 L 150 55 L 155 80 L 160 110 L 150 140 L 135 170 L 110 195 L 95 200 L 85 185 L 70 165 L 55 140 L 50 115 L 55 90 L 65 65 L 80 45 Z" fill="#FEC5AE" stroke="#8B1A1A" stroke-width="1.5"/>
+              <circle cx="105" cy="60" r="4" fill="#8B1A1A"/>
+              <circle cx="90" cy="90" r="5" fill="#8B1A1A"/>
+              <circle cx="115" cy="105" r="6" fill="#E67E22"/>
+              <circle cx="95" cy="130" r="4" fill="#8B1A1A"/>
+              <circle cx="110" cy="155" r="5" fill="#E67E22"/>
+              <circle cx="85" cy="170" r="3" fill="#8B1A1A"/>
+            </svg>
+            <div style="margin-top: 12px; font-size: 12px; color: var(--muted); display: flex; flex-direction: column; gap: 4px;">
+              <div style="display: flex; justify-content: space-between;"><span>Pan India</span> <strong style="color: var(--ink);">87</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>Legacy</span> <strong style="color: var(--ink);">66</strong></div>
+              <div style="display: flex; justify-content: space-between;"><span>Nepal</span> <strong style="color: var(--ink);">43</strong></div>
+            </div>
+          </div>
+          <div style="padding: 20px; background: #FAFAFA; border: 1px solid var(--border); border-radius: 10px;">
+            <div style="font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 14px;">Programme-wise Projects Across India</div>
+            <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+              <thead>
+                <tr style="color: var(--muted); text-align: left;">
+                  <th style="padding: 6px 4px; font-weight: 600;">State</th>
+                  <th style="padding: 6px 4px; font-weight: 600; text-align: center;">Districts</th>
+                  <th style="padding: 6px 4px; font-weight: 600; text-align: right;">Committed</th>
+                  <th style="padding: 6px 4px; font-weight: 600; text-align: right;">Projects</th>
+                </tr>
+              </thead>
+              <tbody style="color: var(--ink-soft);">
+                <tr><td style="padding: 5px 4px; border-top: 1px solid var(--border);">Haryana</td><td style="text-align: center; border-top: 1px solid var(--border);">5</td><td style="text-align: right; border-top: 1px solid var(--border);">₹ 32,882</td><td style="text-align: right; color: var(--maroon); border-top: 1px solid var(--border); font-weight: 600;">12</td></tr>
+                <tr><td style="padding: 5px 4px; border-top: 1px solid var(--border);">Madhya Pradesh</td><td style="text-align: center; border-top: 1px solid var(--border);">8</td><td style="text-align: right; border-top: 1px solid var(--border);">₹ 43,992</td><td style="text-align: right; color: var(--maroon); border-top: 1px solid var(--border); font-weight: 600;">12</td></tr>
+                <tr><td style="padding: 5px 4px; border-top: 1px solid var(--border);">Rajasthan</td><td style="text-align: center; border-top: 1px solid var(--border);">3</td><td style="text-align: right; border-top: 1px solid var(--border);">₹ 12,453</td><td style="text-align: right; color: var(--maroon); border-top: 1px solid var(--border); font-weight: 600;">12</td></tr>
+                <tr><td style="padding: 5px 4px; border-top: 1px solid var(--border);">Uttar Pradesh</td><td style="text-align: center; border-top: 1px solid var(--border);">6</td><td style="text-align: right; border-top: 1px solid var(--border);">₹ 39,888</td><td style="text-align: right; color: var(--maroon); border-top: 1px solid var(--border); font-weight: 600;">12</td></tr>
+                <tr><td style="padding: 5px 4px; border-top: 1px solid var(--border);">Maharashtra</td><td style="text-align: center; border-top: 1px solid var(--border);">8</td><td style="text-align: right; border-top: 1px solid var(--border);">₹ 45,929</td><td style="text-align: right; color: var(--maroon); border-top: 1px solid var(--border); font-weight: 600;">12</td></tr>
+                <tr><td style="padding: 5px 4px; border-top: 1px solid var(--border);">Odisha</td><td style="text-align: center; border-top: 1px solid var(--border);">10</td><td style="text-align: right; border-top: 1px solid var(--border);">₹ 1,32,882</td><td style="text-align: right; color: var(--maroon); border-top: 1px solid var(--border); font-weight: 600;">12</td></tr>
+                <tr><td style="padding: 5px 4px; border-top: 1px solid var(--border);">Bihar</td><td style="text-align: center; border-top: 1px solid var(--border);">12</td><td style="text-align: right; border-top: 1px solid var(--border);">₹ 1,43,992</td><td style="text-align: right; color: var(--maroon); border-top: 1px solid var(--border); font-weight: 600;">12</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center; font-size: 13px; color: var(--muted); margin-top: 16px; font-style: italic;">Illustrative screen — real dashboards are fully interactive with drill-down to grant, district, village, and beneficiary level.</p>
+
+    <div class="feature-grid" style="margin-top: 40px;">
+      <div class="feature-card"><div class="icon">🗺</div><h4>Finance Dashboard</h4><p>Budget · Committed · Disbursed · Utilised · Unutilised · Unspent — at portfolio, programme, or grant level.</p></div>
+      <div class="feature-card"><div class="icon">📈</div><h4>Programme Dashboard</h4><p>Output and outcome achievements, planned vs actual, by programme, geography, and quarter.</p></div>
+      <div class="feature-card"><div class="icon">🌍</div><h4>Geographic Dashboard</h4><p>India heat map with state-wise and district-wise project count, budget committed, beneficiaries reached.</p></div>
+      <div class="feature-card"><div class="icon">🎯</div><h4>Pillar / Thematic View</h4><p>Slice by Schedule VII pillar, SDG, or custom taxonomy. Stackable filters with one-click reset.</p></div>
+      <div class="feature-card"><div class="icon">🔍</div><h4>Drill-down Hierarchy</h4><p>State → District → Block → Village → Grant → Beneficiary. Multi-dimensional, hierarchical, instant.</p></div>
+      <div class="feature-card"><div class="icon">📤</div><h4>DIY Reports &amp; Export</h4><p>No-code drag-and-drop report builder. Export to Excel, PDF, CSV. Scheduled auto-email distribution.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §11 CSR COMPLIANCE ======================= -->
+<section id="compliance">
+  <div class="container">
+    <span class="eyebrow">§11 · CSR &amp; Regulatory Compliance</span>
+    <h2>Indian CSR compliance — built in, not bolted on.</h2>
+    <p class="lede">CSR-2, AAP, Schedule VII, Impact Assessment, the 5% admin cap, MCA audit trail, FCRA — the regulatory backbone every donor-side buyer asks about.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card"><div class="icon">📋</div><h4>CSR-2 Form</h4><p>Data auto-populated from the grant portfolio for MCA filing. Year-on-year comparison ready.</p></div>
+      <div class="feature-card"><div class="icon">📅</div><h4>Annual Action Plan</h4><p>Board-approved AAP tracking across the financial year, with project-level mapping.</p></div>
+      <div class="feature-card"><div class="icon">🎯</div><h4>Schedule VII Tagging</h4><p>Every grant mapped to one of the 11 Schedule VII categories. Portfolio view by goal.</p></div>
+      <div class="feature-card"><div class="icon">⚠</div><h4>5% Admin Cap Monitor</h4><p>Automatic alerting when administrative expenses approach the statutory ceiling.</p></div>
+      <div class="feature-card"><div class="icon">📊</div><h4>Impact Assessment</h4><p>Structured input for MCA-mandated impact assessment of grants ≥ ₹10 Cr.</p></div>
+      <div class="feature-card"><div class="icon">🔒</div><h4>MCA Audit Trail</h4><p>Immutable, system-generated change logs — user ID, timestamp, old/new values. Configurable 8-year retention.</p></div>
+      <div class="feature-card"><div class="icon">🌐</div><h4>FCRA Alignment</h4><p>FC / Non-FC segregation at grant and disbursement level. Separate accounts, separate dashboards.</p></div>
+      <div class="feature-card"><div class="icon">📆</div><h4>Compliance Calendar</h4><p>All filings, renewals, and deadlines in one place. Automated reminders 60/30/7 days out.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §12 VENDOR MGMT ======================= -->
+<section class="tinted" id="vendors">
+  <div class="container">
+    <span class="eyebrow">§12 · Vendor Management</span>
+    <h2>Not all grant money flows to NGOs.</h2>
+    <p class="lede">Some flows to vendors — for procurement, capex, and services inside the project boundary. mGrant tracks the full non-NGO fund flow within the same project structure.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card"><div class="icon">🏢</div><h4>Vendor Master</h4><p>Separate from NGO master. GST, MSME, PAN, category, contact, bank details tracked per vendor.</p></div>
+      <div class="feature-card"><div class="icon">🛒</div><h4>Procurement Records</h4><p>Purchase of materials or capex — e.g., RO plants, medical equipment, IT hardware — tracked against grant budget heads.</p></div>
+      <div class="feature-card"><div class="icon">🔧</div><h4>Service Payments</h4><p>Installation, training, maintenance contracts — with payment schedules and milestone tracking.</p></div>
+      <div class="feature-card"><div class="icon">📄</div><h4>Vendor KYC</h4><p>Document vault with expiry tracking — GST certificate, PAN, MSME registration, bank details.</p></div>
+      <div class="feature-card"><div class="icon">💰</div><h4>Unified Fund Flow</h4><p>Vendor payments visible in the same grant fund-flow view as NGO pass-through. One source of truth for the rupee.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §13 FIELD DATA COLLECTION ======================= -->
+<section id="field-data">
+  <div class="container">
+    <span class="eyebrow">§13 · Field Data Collection</span>
+    <h2>Offline-first mobile data collection, natively integrated.</h2>
+    <p class="lede">Any CSR or foundation workflow that needs field-based data collection — beneficiary surveys, intervention forms, field DD, stakeholder interviews — plugs into mForm, Dhwani's offline-first mobile data platform.</p>
+
+    <div style="display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: center; margin-top: 36px;">
+      <!-- Phone mock -->
+      <div style="background: #1F2937; border-radius: 28px; padding: 14px; box-shadow: var(--shadow-lg);">
+        <div style="background: #fff; border-radius: 20px; padding: 18px; min-height: 440px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 14px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="width: 14px; height: 14px; border-radius: 50%; background: var(--maroon); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700;">m</span>
+              <span style="font-weight: 700; font-size: 14px; color: var(--maroon);">mForm</span>
+            </div>
+            <span style="width: 8px; height: 8px; background: var(--success); border-radius: 50%;"></span>
+          </div>
+          <div style="font-size: 12px; color: var(--muted); margin-bottom: 10px;">Hi, Field Executive</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: var(--tint); border-radius: 8px; font-size: 13px; font-weight: 600;"><span>Beneficiary Survey</span><span style="color: var(--muted);">→</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: var(--tint); border-radius: 8px; font-size: 13px; font-weight: 600;"><span>Field DD Observation</span><span style="color: var(--muted);">→</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: var(--tint); border-radius: 8px; font-size: 13px; font-weight: 600;"><span>Intervention Form</span><span style="color: var(--muted);">→</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: var(--tint); border-radius: 8px; font-size: 13px; font-weight: 600;"><span>FGD Capture</span><span style="color: var(--muted);">→</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: var(--tint); border-radius: 8px; font-size: 13px; font-weight: 600;"><span>Partner KYC</span><span style="color: var(--muted);">→</span></div>
+          </div>
+          <div style="margin-top: 18px; padding: 10px; background: var(--tint-2); border-radius: 8px; font-size: 11px; color: var(--maroon); text-align: center;">
+            <strong>Draft: 3 · Synced: 47 · Rejected: 0</strong>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>Capabilities</h3>
+        <div class="feature-grid" style="margin-top: 16px; grid-template-columns: 1fr 1fr;">
+          <div style="padding: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px;">
+            <h4 style="color: var(--maroon); font-size: 15px; margin-bottom: 4px;">Offline-first</h4>
+            <p style="font-size: 13px; color: var(--muted);">Capture data anywhere, sync when back online.</p>
+          </div>
+          <div style="padding: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px;">
+            <h4 style="color: var(--maroon); font-size: 15px; margin-bottom: 4px;">Bhashini Multilingual</h4>
+            <p style="font-size: 13px; color: var(--muted);">Hindi, Marathi, Tamil, Bengali, and more regional languages.</p>
+          </div>
+          <div style="padding: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px;">
+            <h4 style="color: var(--maroon); font-size: 15px; margin-bottom: 4px;">Configurable Forms</h4>
+            <p style="font-size: 13px; color: var(--muted);">Skip logic, validation, sections, consent flow — no code.</p>
+          </div>
+          <div style="padding: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px;">
+            <h4 style="color: var(--maroon); font-size: 15px; margin-bottom: 4px;">Photo · Video · GPS</h4>
+            <p style="font-size: 13px; color: var(--muted);">Multi-media capture with geo-tags for every submission.</p>
+          </div>
+          <div style="padding: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px;">
+            <h4 style="color: var(--maroon); font-size: 15px; margin-bottom: 4px;">Native to mGrant</h4>
+            <p style="font-size: 13px; color: var(--muted);">Data flows back into grant-level KPI calculation and impact dashboards.</p>
+          </div>
+          <div style="padding: 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px;">
+            <h4 style="color: var(--maroon); font-size: 15px; margin-bottom: 4px;">Or Plug in Yours</h4>
+            <p style="font-size: 13px; color: var(--muted);">SurveyCTO, ODK, KoboToolbox, CommCare — all API-ready.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §14 mLEARN ======================= -->
+<section class="tinted" id="mlearn">
+  <div class="container">
+    <span class="eyebrow">§14 · Learning Management</span>
+    <h2>Train your partners inside the same ecosystem.</h2>
+    <p class="lede">mLearn extends mGrant with structured courses, tracks, and assessments — for onboarding new partners, training on reporting formats, LFA capacity-building, and compliance refreshers.</p>
+    <div class="feature-grid">
+      <div class="feature-card"><div class="icon">🎓</div><h4>Structured Courses</h4><p>Sequential modules with video, text, quizzes, and assessments. Built on Moodle, fully configurable.</p></div>
+      <div class="feature-card"><div class="icon">📜</div><h4>Certificates</h4><p>Auto-issued on completion. Tracked per partner and per individual learner.</p></div>
+      <div class="feature-card"><div class="icon">📊</div><h4>Completion Tracking</h4><p>Partner-level and user-level completion, pass rates, time-to-complete.</p></div>
+      <div class="feature-card"><div class="icon">🔌</div><h4>Typical Use Cases</h4><ul><li>Onboarding new partners</li><li>Training on reporting formats</li><li>LFA capacity-building</li><li>Compliance refreshers</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §15 SECURITY — FLAGSHIP ======================= -->
+<section class="dark" id="security">
+  <div class="container">
+    <span class="eyebrow" style="background: rgba(230,126,34,0.2); color: var(--orange-light);">Flagship · §15 · Enterprise-Grade Security</span>
+    <h2>Enterprise security. Indian data residency. DPDP-aligned.</h2>
+    <p class="lede">mGrant is built for organisations that take compliance, data protection, and audit seriously. Hosted on AWS Mumbai, ISO 27001-certified, VAPT-cleared, DPDP-aligned — with a full immutable audit trail suitable for MCA audit.</p>
+
+    <!-- Cert badges -->
+    <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px;">
+      <div style="padding: 12px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;"><div style="font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.8px;">Certified</div><div style="font-weight: 700; color: #fff; font-size: 15px; margin-top: 2px;">ISO 27001:2013</div></div>
+      <div style="padding: 12px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;"><div style="font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.8px;">Cleared</div><div style="font-weight: 700; color: #fff; font-size: 15px; margin-top: 2px;">VAPT (3rd-party)</div></div>
+      <div style="padding: 12px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;"><div style="font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.8px;">Aligned</div><div style="font-weight: 700; color: #fff; font-size: 15px; margin-top: 2px;">DPDP Act 2023</div></div>
+      <div style="padding: 12px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;"><div style="font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.8px;">Aligned</div><div style="font-weight: 700; color: #fff; font-size: 15px; margin-top: 2px;">OWASP Top 10</div></div>
+      <div style="padding: 12px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;"><div style="font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.8px;">Insured</div><div style="font-weight: 700; color: #fff; font-size: 15px; margin-top: 2px;">3rd-Party Liability</div></div>
+    </div>
+
+    <!-- Four-tile security layout -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
+      <div style="padding: 26px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+        <h4 style="color: var(--orange-light); font-size: 16px; margin-bottom: 14px;">🏗 Hosting &amp; Infrastructure</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.7;">
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> AWS Mumbai (ap-south-1), Multi-AZ</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Data residency within India by default</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> VPC isolation, default-deny firewalls</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Bastion + MFA for admin access</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> AWS WAF, Shield, rate-limiting</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Cloud or on-premise deployment</li>
+        </ul>
+      </div>
+      <div style="padding: 26px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+        <h4 style="color: var(--orange-light); font-size: 16px; margin-bottom: 14px;">🔐 Identity &amp; Access</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.7;">
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> SSO via SAML 2.0 and OAuth 2.0</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Multi-Factor Authentication (MFA)</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> RBAC — module, record, field level</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Session hardening, 15-min idle timeout</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Lockout on repeated failed logins</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> 90-day inactive user auto-disable</li>
+        </ul>
+      </div>
+      <div style="padding: 26px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+        <h4 style="color: var(--orange-light); font-size: 16px; margin-bottom: 14px;">🔒 Encryption &amp; Resilience</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.7;">
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> TLS 1.2+ with HSTS in transit</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> AWS KMS at rest — RDS, S3, EBS, ElastiCache</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> 12-hourly encrypted backups to S3</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Cross-region replication</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> RPO = 12 hours · RTO ≤ 8 hours</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Client tenant isolation per deployment</li>
+        </ul>
+      </div>
+      <div style="padding: 26px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
+        <h4 style="color: var(--orange-light); font-size: 16px; margin-bottom: 14px;">📜 Audit &amp; Compliance</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: rgba(255,255,255,0.85); line-height: 1.7;">
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Immutable Version records on every change</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Timestamp + User + old/new (JSON diff) + IP</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Retention configurable up to 8 financial years</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Exportable as CSV / Excel</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> Role-restricted access to audit logs</li>
+          <li style="padding: 3px 0 3px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange-light);">›</span> MCA audit trail compliance documentation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DPDP callout -->
+    <div style="margin-top: 32px; padding: 26px 28px; background: rgba(230,126,34,0.12); border-left: 4px solid var(--orange); border-radius: 8px;">
+      <div style="font-weight: 700; color: var(--orange-light); font-size: 15px; margin-bottom: 10px;">DPDP Act 2023 alignment</div>
+      <p style="font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.7; margin: 0;">
+        Client = Data Fiduciary · Dhwani = Data Processor (covered by DPA). Consent capture and withdrawal logged. Data Principal rights supported: export, edit, erasure (subject to legal holds). Breach runbook with client notification SLAs. In-country hosting by default, cross-border off. DPA with sub-processor list; RoPA and DPIA templates available.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §16 INTEGRATIONS ======================= -->
+<section id="integrations">
+  <div class="container">
+    <span class="eyebrow">§16 · Integrations</span>
+    <h2>Plays well with your existing stack.</h2>
+    <p class="lede">Connect mGrant to your ERP, BI tool, identity provider, and field data platform — or run it standalone. Open REST APIs and webhooks for anything we haven't built yet.</p>
+
+    <div class="two-col" style="gap: 28px; margin-top: 36px;">
+      <div>
+        <h3 style="font-size: 20px; margin-bottom: 18px;">🟢 Active Integrations</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>SSO / Identity</strong><div style="font-size: 13px; color: var(--muted);">SAML 2.0, OAuth 2.0 (Azure AD, Okta, Google, O365)</div></div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>Email</strong><div style="font-size: 13px; color: var(--muted);">Client SMTP for transactional notifications</div></div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>SMS · MSG91</strong><div style="font-size: 13px; color: var(--muted);">Transactional and promotional SMS</div></div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>AWS S3</strong><div style="font-size: 13px; color: var(--muted);">Encrypted document storage</div></div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>NGO Portal</strong><div style="font-size: 13px; color: var(--muted);">Self-service proposals, UCs, reports</div></div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>Bitrix Helpdesk</strong><div style="font-size: 13px; color: var(--muted);">Support ticket tracking &amp; resolution</div></div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>FreshPing</strong><div style="font-size: 13px; color: var(--muted);">1-minute uptime monitoring &amp; alerts</div></div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between;"><div><strong>mForm</strong><div style="font-size: 13px; color: var(--muted);">Native offline field data collection sync</div></div></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size: 20px; margin-bottom: 18px;">🔌 Available Connectors</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 8px;"><strong>Financial systems</strong><div style="font-size: 13px; color: var(--muted); margin-top: 4px;">SAP, Tally, Oracle, or any ERP — via canonical schema. Two modes: aggregate expenditure reporting or auto-sync from the ERP.</div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 8px;"><strong>Business Intelligence</strong><div style="font-size: 13px; color: var(--muted); margin-top: 4px;">Power BI, Tableau, Superset, Google Data Studio.</div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 8px;"><strong>Programme MIS</strong><div style="font-size: 13px; color: var(--muted); margin-top: 4px;">SurveyCTO, ODK, KoboToolbox, CommCare — architecture-ready.</div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 8px;"><strong>HRMS</strong><div style="font-size: 13px; color: var(--muted); margin-top: 4px;">Zoho People, greytHR, Keka (project-based).</div></div>
+          <div style="padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 8px;"><strong>Custom APIs &amp; Webhooks</strong><div style="font-size: 13px; color: var(--muted); margin-top: 4px;">Open REST APIs for all modules. Token-based auth. OAuth 2.0. Webhooks for event-driven integration with any mission-critical system.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §17 AI (UPCOMING) ======================= -->
+<section class="tinted" id="ai">
+  <div class="container">
+    <span class="eyebrow" style="background: rgba(230,126,34,0.15); color: var(--orange);">Upcoming · §17 · AI-Powered Features</span>
+    <h2>AI is on the roadmap — honestly labelled.</h2>
+    <p class="lede">Two AI capabilities in active development — natural-language data chat, and automatic summarisation of qualitative reports. No "Coming Soon" vapourware here; just what's actually being built.</p>
+
+    <div class="two-col" style="gap: 24px; margin-top: 36px;">
+      <div style="padding: 28px 26px; background: #fff; border: 1px solid var(--border); border-radius: 12px; position: relative;">
+        <span style="position: absolute; top: 16px; right: 16px; padding: 3px 10px; background: var(--orange); color: #fff; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;">Upcoming</span>
+        <h4 style="color: var(--maroon); font-size: 20px; margin-bottom: 12px;">💬 Natural-Language Data Chat</h4>
+        <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 14px;">Ask questions in plain English or Hindi. The system interprets, queries your data, and returns a contextual answer with the underlying numbers.</p>
+        <div style="padding: 14px 16px; background: var(--tint); border-left: 3px solid var(--orange); border-radius: 6px; font-size: 13.5px; color: var(--ink-soft); font-style: italic;">
+          "What is the total unutilised amount across active grants in Maharashtra?"
+        </div>
+        <p style="margin-top: 14px; font-size: 13px; color: var(--muted);">Built on Model Context Protocol (MCP) with 30+ tools spanning NGO, proposals, projects, fund management, reporting, and approvals.</p>
+      </div>
+      <div style="padding: 28px 26px; background: #fff; border: 1px solid var(--border); border-radius: 12px; position: relative;">
+        <span style="position: absolute; top: 16px; right: 16px; padding: 3px 10px; background: var(--orange); color: #fff; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;">Upcoming</span>
+        <h4 style="color: var(--maroon); font-size: 20px; margin-bottom: 12px;">📄 AI Report Summarisation</h4>
+        <p style="font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 14px;">Extract key findings from lengthy QPR and narrative reports. Identify themes across many submissions. Auto-generate executive summaries for board-ready decks.</p>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">›</span> Cross-partner theme identification</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">›</span> Auto executive summary generation</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange); font-weight: 700;">›</span> Proactive risk alerts (roadmap)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §18 PLATFORM CAPABILITIES ======================= -->
+<section id="platform">
+  <div class="container">
+    <span class="eyebrow">§18 · Platform Capabilities</span>
+    <h2>Configurable, not rigid.</h2>
+    <p class="lede">mGrant is a platform, not a product. Adapt it to your process instead of the other way around — with low-code configuration, white-label options, and enterprise-grade infrastructure.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card"><div class="icon">🧱</div><h4>Low-Code / No-Code</h4><p>Visual form designer, 50+ field types, custom fields without code, automatic UI generation from metadata.</p></div>
+      <div class="feature-card"><div class="icon">🔀</div><h4>Configurable Workflows</h4><p>State-based workflows per module — Draft → Submitted → Approved → Cancelled — configurable per client. Approval levels, rejection routing, notification routing.</p></div>
+      <div class="feature-card"><div class="icon">📚</div><h4>Central Document Repository</h4><p>Platform-wide document library — upload once, tag, search, reuse across grants and partners. Not just per-project.</p></div>
+      <div class="feature-card"><div class="icon">📥</div><h4>Simplified Bulk Upload</h4><p>Downloadable Excel templates with <strong>cascading, name-based dropdowns</strong> — State → District → Block → Village. Download, fill, upload. No Frappe IDs, no power-user Excel skills needed.</p></div>
+      <div class="feature-card"><div class="icon">📄</div><h4>Document Generation</h4><p>Template-based PDF and print formats — MoU, Letter of Award, Fund Letters, Board Notes — with organisation branding.</p></div>
+      <div class="feature-card"><div class="icon">🛡</div><h4>Granular RBAC</h4><p>Module, record, and field-level permissions. Role hierarchies and user groups. Dynamic updates without downtime.</p></div>
+      <div class="feature-card"><div class="icon">📊</div><h4>Report Builder</h4><p>No-code, drag-and-drop. Dynamic filtering, grouping, aggregation. Multiple views — tabular, calendar, Gantt, Kanban, tree.</p></div>
+      <div class="feature-card"><div class="icon">🏢</div><h4>Multi-Tenancy</h4><p>Multi-site deployment, tenant isolation via database, shared infrastructure with separate schemas.</p></div>
+      <div class="feature-card"><div class="icon">🎨</div><h4>White-Label</h4><p>Deployed under your brand, colour palette, and logo. Your platform, powered by mGrant.</p></div>
+    </div>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px;">
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">Geo-Tagging</span>
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">Multimedia Support</span>
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">API-Ready</span>
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">Bhashini Multilingual</span>
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">Real-time Dashboards</span>
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">Reminders &amp; Notifications</span>
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">Legacy Data Upload</span>
+      <span style="padding: 6px 14px; background: var(--tint-2); color: var(--maroon); border-radius: 20px; font-size: 12px; font-weight: 600;">Mobile &amp; Web</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §19 USER ACCESS ======================= -->
+<section class="tinted" id="users">
+  <div class="container">
+    <span class="eyebrow">§19 · User Access &amp; Views</span>
+    <h2>Three core personas. Granular permissions.</h2>
+    <p class="lede">Role-based views designed for the three key personas on the donor side — with field-level permissions stacked on top.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 36px;">
+      <div style="padding: 28px 26px; background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--maroon); border-radius: 10px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Persona 1</div>
+        <h4 style="font-size: 20px; color: var(--ink);">Super Admin · CXO View</h4>
+        <p style="font-size: 13px; color: var(--muted); margin: 8px 0 14px;">Full system access across the organisation.</p>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Create / edit / delete any entity</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Allocate budget across programmes</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Configure reports &amp; dashboards</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> SDG · Impact · Budget views</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> User management</li>
+        </ul>
+      </div>
+      <div style="padding: 28px 26px; background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--maroon); border-radius: 10px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Persona 2</div>
+        <h4 style="font-size: 20px; color: var(--ink);">Partner Admin · Programme Head</h4>
+        <p style="font-size: 13px; color: var(--muted); margin: 8px 0 14px;">Programme-level ownership within a vertical.</p>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Drill-down at partner + programme</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Allocate budget within vertical</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Configure dashboards for team</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> SDG · Impact · Budget views</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Approval authority</li>
+        </ul>
+      </div>
+      <div style="padding: 28px 26px; background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--maroon); border-radius: 10px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Persona 3</div>
+        <h4 style="font-size: 20px; color: var(--ink);">Partner Field Executive · NGO User</h4>
+        <p style="font-size: 13px; color: var(--muted); margin: 8px 0 14px;">Own grants only. Submit, report, collect data.</p>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> View own grants only</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Submit reports, budgets, impact</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Field data collection via mForm</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Submit Stories of Change</li>
+          <li style="padding: 4px 0 4px 20px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> View partner knowledge base</li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 24px; font-size: 13.5px; color: var(--muted); font-style: italic;">Within each role, individual permissions can be toggled at module, record, and field level. Custom roles configurable per deployment.</p>
+  </div>
+</section>
+
+<!-- ======================= §20 TRUSTED BY ======================= -->
+<section id="trusted-by">
+  <div class="container">
+    <span class="eyebrow">§20 · Trusted By</span>
+    <h2>Marquee Indian CSR teams &amp; foundations run on mGrant.</h2>
+    <p class="lede">40+ donor organisations already use mGrant for their grant lifecycle — from corporate CSR to philanthropic foundations.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 36px;">
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">HDFC Bank</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Godrej</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Axis Bank Foundation</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Mahindra</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Amazon</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Vedanta Limited</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Jindal Stainless</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">ReNew CSR</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Welspun Group CSR</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">ICICI Foundation</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Bajaj Finserv</div>
+      <div style="padding: 24px 18px; background: #fff; border: 1px solid var(--border); border-radius: 10px; text-align: center; font-weight: 700; color: var(--ink); font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s;" onmouseover="this.style.borderColor='#8B1A1A';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='translateY(0)'">Bajaj Auto</div>
+    </div>
+    <p style="text-align: center; margin-top: 20px; font-size: 13px; color: var(--muted); font-style: italic;">A sample of mGrant's client roster. Full list shared in direct conversation.</p>
+  </div>
+</section>
+
+<!-- ======================= §21 IMPLEMENTATION & SLA ======================= -->
+<section class="tinted" id="implementation">
+  <div class="container">
+    <span class="eyebrow">§21 · Implementation &amp; SLA</span>
+    <h2>2–3 months to go-live. Predictable, operated service.</h2>
+    <p class="lede">Three-stage implementation, named team with a client POC, annual subscription, and a clear SLA on issue response.</p>
+
+    <!-- Three-stage -->
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 10px; align-items: stretch; margin-top: 36px;">
+      <div style="padding: 24px; background: #fff; border: 1.5px solid var(--border); border-radius: 10px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Stage 1</div>
+        <h4 style="font-size: 18px; color: var(--ink); margin-bottom: 12px;">Requirement &amp; Scoping</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Stakeholder consultation</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> BRD &amp; module finalisation</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> KPI / indicator selection</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Dashboard definition</li>
+        </ul>
+      </div>
+      <div style="display: flex; align-items: center; color: var(--orange); font-size: 22px; font-weight: 700;">→</div>
+      <div style="padding: 24px; background: #fff; border: 1.5px solid var(--border); border-radius: 10px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Stage 2</div>
+        <h4 style="font-size: 18px; color: var(--ink); margin-bottom: 12px;">Configure &amp; Customise</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Wireframes &amp; branding</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Form / workflow config</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Legacy data upload</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Dashboard development</li>
+        </ul>
+      </div>
+      <div style="display: flex; align-items: center; color: var(--orange); font-size: 22px; font-weight: 700;">→</div>
+      <div style="padding: 24px; background: #fff; border: 1.5px solid var(--border); border-radius: 10px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--orange); margin-bottom: 8px;">Stage 3</div>
+        <h4 style="font-size: 18px; color: var(--ink); margin-bottom: 12px;">Test, Train &amp; Handover</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Performance &amp; UAT</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> User training</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Documentation handover</li>
+          <li style="padding: 3px 0 3px 16px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">›</span> Post-launch support</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two-col" style="gap: 28px; margin-top: 40px;">
+      <div style="padding: 26px; background: #fff; border: 1px solid var(--border); border-radius: 10px;">
+        <h4 style="font-size: 17px; color: var(--maroon); margin-bottom: 10px;">One-Time Setup Includes</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Organisation account setup</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Role &amp; permission creation</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> User creation &amp; user guides</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Master data upload (KPI bank, focus areas, SDGs, census)</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Setup of 2–3 pilot projects</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> UI/UX branding</li>
+        </ul>
+      </div>
+      <div style="padding: 26px; background: #fff; border: 1px solid var(--border); border-radius: 10px;">
+        <h4 style="font-size: 17px; color: var(--maroon); margin-bottom: 10px;">Annual Subscription Includes</h4>
+        <ul style="list-style: none; font-size: 13.5px; color: var(--ink-soft);">
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Dedicated client instance</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Regular platform updates &amp; features</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> L1 project-management support</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Server costs &amp; performance management</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Ongoing technical issue resolution</li>
+          <li style="padding: 4px 0 4px 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--orange);">✓</span> Bug fixes &amp; maintenance</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SLA -->
+    <div style="margin-top: 40px; padding: 28px; background: linear-gradient(135deg, var(--maroon-dark), var(--maroon)); color: #fff; border-radius: 12px;">
+      <div style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: rgba(255,255,255,0.7); margin-bottom: 14px;">Service Level Agreement</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; align-items: center;">
+        <div>
+          <div style="font-size: 34px; font-weight: 800;">4 hrs</div>
+          <div style="font-size: 13px; opacity: 0.9; margin-top: 2px;"><strong>P0 (High)</strong> — daily operations disrupted; immediate resolution</div>
+        </div>
+        <div>
+          <div style="font-size: 34px; font-weight: 800;">24 hrs</div>
+          <div style="font-size: 13px; opacity: 0.9; margin-top: 2px;"><strong>P1 (Medium)</strong> — analysis or project timelines affected</div>
+        </div>
+        <div>
+          <div style="font-size: 14px; opacity: 0.9;">Business hours: <strong>9am–6pm · Mon–Fri</strong></div>
+          <div style="font-size: 13px; opacity: 0.8; margin-top: 6px;">Third-party dependencies addressed on high-priority within 24 hrs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deployment options -->
+    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+      <span style="padding: 10px 20px; background: #fff; border: 1px solid var(--border); border-radius: 24px; font-size: 14px; font-weight: 600; color: var(--maroon);">☁ Cloud SaaS (AWS Mumbai)</span>
+      <span style="padding: 10px 20px; background: #fff; border: 1px solid var(--border); border-radius: 24px; font-size: 14px; font-weight: 600; color: var(--maroon);">🏢 On-premise Deployment</span>
+      <span style="padding: 10px 20px; background: #fff; border: 1px solid var(--border); border-radius: 24px; font-size: 14px; font-weight: 600; color: var(--maroon);">🎨 White-labelled</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §22 WHY mGRANT COMPARISON ======================= -->
+<section id="why">
+  <div class="container">
+    <span class="eyebrow">§22 · Why mGrant</span>
+    <h2>Purpose-built for donor-side grant management.</h2>
+    <p class="lede">Spreadsheets work until they don't. Generic CRMs don't know what a tranche is. Point tools cover fragments, not the whole lifecycle. mGrant is built for this, end to end.</p>
+
+    <div style="margin-top: 36px; background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
+        <thead>
+          <tr style="background: var(--ink); color: #fff;">
+            <th style="text-align: left; padding: 16px 18px; font-weight: 600; width: 32%;">Capability</th>
+            <th style="text-align: center; padding: 16px 10px; font-weight: 600;">Spreadsheets</th>
+            <th style="text-align: center; padding: 16px 10px; font-weight: 600;">Generic CRM</th>
+            <th style="text-align: center; padding: 16px 10px; font-weight: 600;">Point Tools</th>
+            <th style="text-align: center; padding: 16px 10px; font-weight: 600; background: var(--maroon);">mGrant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-top: 1px solid var(--border);"><td style="padding: 13px 18px;">Partner discovery (pre-vetted NGO directory)</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ 3,500+</td></tr>
+          <tr style="border-top: 1px solid var(--border); background: #FAFAFA;"><td style="padding: 13px 18px;">Due diligence — 3 layers</td><td style="text-align: center; color: var(--muted);">Manual</td><td style="text-align: center; color: var(--muted);">Partial</td><td style="text-align: center; color: var(--muted);">Desk only</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ All three</td></tr>
+          <tr style="border-top: 1px solid var(--border);"><td style="padding: 13px 18px;">End-to-end grant lifecycle</td><td style="text-align: center; color: var(--muted);">Manual</td><td style="text-align: center; color: var(--muted);">Partial</td><td style="text-align: center; color: var(--muted);">Fragments</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ 9 phases</td></tr>
+          <tr style="border-top: 1px solid var(--border); background: #FAFAFA;"><td style="padding: 13px 18px;">LFA / KPI tracking (Activity → Impact)</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">Some</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Native</td></tr>
+          <tr style="border-top: 1px solid var(--border);"><td style="padding: 13px 18px;">Dual budget heads (donor + natural)</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Built-in</td></tr>
+          <tr style="border-top: 1px solid var(--border); background: #FAFAFA;"><td style="padding: 13px 18px;">ERP integration (SAP / Tally / Oracle)</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">Rare</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Canonical schema</td></tr>
+          <tr style="border-top: 1px solid var(--border);"><td style="padding: 13px 18px;">CSR-2 · Schedule VII · AAP · MCA audit</td><td style="text-align: center; color: var(--muted);">Manual</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">Partial</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Built-in</td></tr>
+          <tr style="border-top: 1px solid var(--border); background: #FAFAFA;"><td style="padding: 13px 18px;">Immutable audit trail (8-year retention)</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">Rare</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Version DocType</td></tr>
+          <tr style="border-top: 1px solid var(--border);"><td style="padding: 13px 18px;">DPDP alignment · Data residency India</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">Often ✗</td><td style="text-align: center; color: var(--muted);">Rare</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ AWS Mumbai</td></tr>
+          <tr style="border-top: 1px solid var(--border); background: #FAFAFA;"><td style="padding: 13px 18px;">Offline field data collection (mForm)</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Native + API</td></tr>
+          <tr style="border-top: 1px solid var(--border);"><td style="padding: 13px 18px;">Stories of Change (qualitative impact)</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Cross-partner</td></tr>
+          <tr style="border-top: 1px solid var(--border); background: #FAFAFA;"><td style="padding: 13px 18px;">Low-code configuration</td><td style="text-align: center; color: var(--muted);">✗</td><td style="text-align: center; color: var(--muted);">Partial</td><td style="text-align: center; color: var(--muted);">Rare</td><td style="text-align: center; color: var(--success); font-weight: 700;">✓ Native</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ROI callout -->
+    <div style="margin-top: 32px; padding: 26px; background: linear-gradient(135deg, rgba(230,126,34,0.1), rgba(139,26,26,0.05)); border: 1px solid var(--tint-2); border-radius: 12px; text-align: center;">
+      <div style="font-size: 44px; font-weight: 800; color: var(--maroon);">60–70%</div>
+      <div style="font-size: 16px; color: var(--ink-soft); margin-top: 6px;">reduction in grant processing time — from client business-case reviews</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §23 DATA DICTIONARY ======================= -->
+<section class="tinted" id="glossary">
+  <div class="container">
+    <span class="eyebrow">§23 · Data Dictionary</span>
+    <h2>Plain-language glossary.</h2>
+    <p class="lede">Key terms used in mGrant — for anyone new to Indian grant-making and CSR.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 32px;">
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Donor / Funding Agency</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">The organisation funding grants — corporate CSR, foundation, bilateral, or government body. Primary tenant of mGrant.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">GAF · Grant Application Form</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Structured proposal form. Once approved, converts into a Grant and a Project.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">RFP / TOR</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Request for Proposal / Terms of Reference. Released in Open Call or Invite-Only mode.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">MoU / Letter of Award</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">The legal grant agreement between donor and NGO, triggered on GAF approval.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Project vs Grant vs Grant Year</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Project = multi-year engagement; Grant = yearly funding cycle; Grant Year = annual slice.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Programme / Pillar / Thematic Area</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Programme = broad initiative; Pillar = internal grouping; Thematic = subject focus.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Schedule VII</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Section of the Companies Act listing the 11 permitted CSR activity categories.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">CSR-2</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Annual CSR reporting form filed with MCA. Auto-populated from the grant portfolio.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">AAP · Annual Action Plan</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Board-approved CSR plan for the financial year. Tracked through mGrant.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">FCRA / FC / Non-FC</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">FC = foreign contribution. Non-FC = domestic. Tracked separately per FCRA requirements.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">12A / 80G / CSR-1</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Income Tax registrations enabling tax-exempt grants. Stored with expiry tracking.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Due Diligence</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Partner vetting across 3 layers: desk (documents), field (site visit), reference.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Tranche</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">A scheduled payment instalment. Grants disbursed across multiple tranches.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Fund Request</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">NGO's request for a tranche payment. Multi-level approval before disbursement.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">UTR</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Unique Transaction Reference — captured on disbursement for bank reconciliation.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Budget Head / Sub-Budget Head</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Expense category / specific line item. Donor heads + natural heads with mapping.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">LFA</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Logical Framework Approach — Activities → Outputs → Outcomes → Impact.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">KPI</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Key Performance Indicator — measurable value tracking project progress.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">QPR / QFR / QRR / FUC</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Quarterly Progress / Fund utilisation / Review Reports. FUC = Fund utilisation Certificate.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Stories of Change</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Qualitative narrative reports with photos and videos. Cross-partner peer knowledge.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">mForm · mLearn</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Dhwani's offline data-collection app and learning management system.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">ISO 27001 · VAPT · DPDP</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Information-security standard · Vulnerability testing · India's data protection law.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">MCA Audit Trail</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Mandatory immutable change log in accounting software, per MCA rules.</p></div>
+      <div style="padding: 18px; background: #fff; border: 1px solid var(--border); border-radius: 8px;"><strong style="color: var(--maroon);">Bhashini</strong><p style="font-size: 13.5px; color: var(--ink-soft); margin-top: 4px;">Indian multilingual NLP capability — supports form translations across regional languages.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= §24 CTA ======================= -->
+<section class="maroon" id="cta">
+  <div class="container" style="text-align: center;">
+    <span class="eyebrow">Ready to transform your grant management?</span>
+    <h2 style="font-size: clamp(32px, 4.5vw, 48px); max-width: 800px; margin: 0 auto 20px;">Book a session with Dhwani.</h2>
+    <p style="font-size: 18px; color: rgba(255,255,255,0.85); max-width: 640px; margin: 0 auto 36px; line-height: 1.6;">See mGrant live, tailored to your CSR or foundation workflow. 30 minutes. No slideware — just the platform and your use cases.</p>
+    <a href="mailto:partnerships@dhwaniris.com" class="btn btn-primary" style="font-size: 17px; padding: 16px 36px;">Book a Session →</a>
+    <div style="margin-top: 24px; font-size: 15px; color: rgba(255,255,255,0.8);">
+      partnerships@dhwaniris.com &nbsp;·&nbsp; <a href="https://www.dhwaniris.com" style="color: #fff; text-decoration: underline;">www.dhwaniris.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer style="padding: 44px 0 36px; background: #111827; color: rgba(255,255,255,0.7);">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 32px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+          <span style="width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, var(--orange) 0%, var(--maroon) 100%); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;">mG</span>
+          <span style="font-weight: 800; font-size: 18px; color: #fff;">mGrant</span>
+        </div>
+        <p style="font-size: 13.5px; line-height: 1.7;">The grant-management platform for Indian donors. Built by Dhwani Rural Information Systems — simplifying technology for social-purpose organisations.</p>
+      </div>
+      <div>
+        <h5 style="color: #fff; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">Product</h5>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+          <a href="#lifecycle" style="color: rgba(255,255,255,0.65);">The Lifecycle</a>
+          <a href="#partners" style="color: rgba(255,255,255,0.65);">Partner Discovery</a>
+          <a href="#security" style="color: rgba(255,255,255,0.65);">Security</a>
+          <a href="#integrations" style="color: rgba(255,255,255,0.65);">Integrations</a>
+        </div>
+      </div>
+      <div>
+        <h5 style="color: #fff; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">Platform Family</h5>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+          <span style="color: rgba(255,255,255,0.65);">mGrant (Donor)</span>
+          <span style="color: rgba(255,255,255,0.65);">mGrant NuO (NGO)</span>
+          <span style="color: rgba(255,255,255,0.65);">mForm</span>
+          <span style="color: rgba(255,255,255,0.65);">mLearn</span>
+        </div>
+      </div>
+      <div>
+        <h5 style="color: #fff; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">Contact</h5>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+          <a href="mailto:partnerships@dhwaniris.com" style="color: rgba(255,255,255,0.65);">partnerships@dhwaniris.com</a>
+          <a href="https://www.dhwaniris.com" style="color: rgba(255,255,255,0.65);">www.dhwaniris.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.5);">
+      <div>© 2026 Dhwani Rural Information Systems Pvt. Ltd. · All Rights Reserved</div>
+      <div>mGrant Donor Features · v1.0 · April 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+</script>
+</body>
+</html>
